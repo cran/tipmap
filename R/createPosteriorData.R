@@ -42,7 +42,7 @@ createPosteriorData <- function(mapPrior, newTrialData, sigma, nullTreatmentEffe
   for (i in 1:length(defaultWeights)) {
     robust.mix.prior <- RBesT::robustify(mapPrior, weight = (1 - defaultWeights[i]), m = 0, n = 1, sigma = sigma, mean = nullTreatmentEffect)
     posterior <- RBesT::postmix(robust.mix.prior, m = newTrialData["Mean"], se = newTrialData["SE"])
-    arr[i, ] <- RBesT::qmix(posterior, defaultQuantiles)
+    suppressWarnings(arr[i, ] <- RBesT::qmix(posterior, defaultQuantiles))
   }
   posteriorData <- data.frame(cbind(weight = defaultWeights, arr))
   return(posteriorData)

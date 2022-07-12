@@ -24,8 +24,13 @@ createNewTrialData <- function(nTotal, treatmentEffectEstimate, standardError) {
   }
 
   newTrialData <- c(
-    nTotal, treatmentEffectEstimate, standardError,
-    stats::qnorm(p = defaultQuantiles, mean = treatmentEffectEstimate, sd = standardError)
+    nTotal,
+    treatmentEffectEstimate,
+    standardError,
+    stats::qnorm(
+      p = defaultQuantiles,
+      mean = treatmentEffectEstimate,
+      sd = standardError)
   )
   names(newTrialData) <- c("nTotal", "Mean", "SE", paste0("q", defaultQuantiles))
   return(newTrialData)

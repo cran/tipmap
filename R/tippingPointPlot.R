@@ -1,5 +1,5 @@
 
-#' Visualize tipping point analysis.
+#' Visualize tipping point analysis
 #'
 #' @description
 #' Uses a data frame created by \code{createTippingPointData()} to visualize the tipping point analysis.

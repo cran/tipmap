@@ -3,7 +3,7 @@
 \docType{data}
 \name{defaultQuantiles}
 \alias{defaultQuantiles}
-\title{default quantiles}
+\title{Default quantiles}
 \format{
 An object of class \code{numeric} of length 13.
 }
@@ -11,6 +11,6 @@ An object of class \code{numeric} of length 13.
 defaultQuantiles
 }
 \description{
-default quantiles
+Default quantiles
 }
 \keyword{datasets}

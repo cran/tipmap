@@ -1,4 +1,4 @@
-#' Create data frame ready to use for tipping point analysis.
+#' Create data frame ready to use for tipping point analysis
 #'
 #' Combines new trial data created by \code{createTargetData()}, a posterior distribution created by \code{createPosteriorData()} and a
 #' robust MAP prior using \code{RBesT::automixfit()} and an optional meta-analysis created using the \code{meta} package into a data frame

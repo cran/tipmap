@@ -2,7 +2,7 @@
 % Please edit documentation in R/createTippingPointData.R
 \name{createTippingPointData}
 \alias{createTippingPointData}
-\title{Create data frame ready to use for tipping point analysis.}
+\title{Create data frame ready to use for tipping point analysis}
 \usage{
 createTippingPointData(newTrialData, posterior, mapPrior, metaAnalysis = NULL)
 }

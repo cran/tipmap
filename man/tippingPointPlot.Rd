@@ -2,7 +2,7 @@
 % Please edit documentation in R/tippingPointPlot.R
 \name{tippingPointPlot}
 \alias{tippingPointPlot}
-\title{Visualize tipping point analysis.}
+\title{Visualize tipping point analysis}
 \usage{
 tippingPointPlot(
   tippingPointData,

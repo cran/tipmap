@@ -3,7 +3,7 @@
 \docType{data}
 \name{tipmapLightRed}
 \alias{tipmapLightRed}
-\title{custom light red}
+\title{Custom light red}
 \format{
 An object of class \code{character} of length 1.
 }
@@ -11,6 +11,6 @@ An object of class \code{character} of length 1.
 tipmapLightRed
 }
 \description{
-custom light red
+Custom light red
 }
 \keyword{datasets}

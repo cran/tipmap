@@ -3,7 +3,7 @@
 \docType{data}
 \name{defaultWeights}
 \alias{defaultWeights}
-\title{default weights}
+\title{Default weights}
 \format{
 An object of class \code{numeric} of length 201.
 }
@@ -11,6 +11,6 @@ An object of class \code{numeric} of length 201.
 defaultWeights
 }
 \description{
-default weights
+Default weights
 }
 \keyword{datasets}
