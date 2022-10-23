@@ -9,11 +9,11 @@
 #' @param y_range An optional argument specifying range of the y-axis.
 #' @param y_breaks An optional vector specifying breaks on the y-axis.
 #' @param title The plot title.
-#' @param y_lab The label for the y axis. Defaults to "Endpoint".
-#' @param x_lab The label for the x axis. Defaults to "Weight on informative component".
+#' @param y_lab The label for the y axis. Defaults to "Mean difference".
+#' @param x_lab The label for the x axis. Defaults to "Weight on informative component of MAP prior".
 #' @param map_prior_lab The label for the MAP prior. Defaults to "MAP prior"
 #' @param meta_analysis_lab An optional label for a meta-analysis (if included).
-#' @param legend_title An optional title for the plot legend. Defaults to "Posterior quantile".
+#' @param legend_title An optional title for the plot legend. Defaults to "Posterior quantiles".
 #' @param null_effect The null treatment effect, determining where tipping points are calculated. Defaults to 0.
 #'
 #' @export
@@ -30,8 +30,8 @@ tipmap_plot <-
            y_range = NULL,
            y_breaks = NULL,
            title = NULL,
-           y_lab = "Endpoint",
-           x_lab = "Weight on informative component",
+           y_lab = "Mean difference",
+           x_lab = "Weight on informative component of MAP prior",
            map_prior_lab = "MAP\nprior",
            meta_analysis_lab = "MA",
            legend_title = "Posterior quantile",
@@ -152,16 +152,16 @@ tipmap_plot <-
     (abs(min(abs(
       unlist(tipmap_data$t.0.975)
     ), na.rm = TRUE) - null_effect))) {
-      tippingPoint.025 <- get_tipping_point(tipmap_data,
+      tippingPoint.025 <- get_tipping_points(tipmap_data,
                                           quantile = 0.025,
                                           null_effect = null_effect)
-      tippingPoint.05 <- get_tipping_point(tipmap_data,
+      tippingPoint.05 <- get_tipping_points(tipmap_data,
                                          quantile = 0.05,
                                          null_effect = null_effect)
-      tippingPoint.1 <- get_tipping_point(tipmap_data,
+      tippingPoint.1 <- get_tipping_points(tipmap_data,
                                         quantile = 0.1,
                                         null_effect = null_effect)
-      tippingPoint.2 <- get_tipping_point(tipmap_data,
+      tippingPoint.2 <- get_tipping_points(tipmap_data,
                                         quantile = 0.2,
                                         null_effect = null_effect)
 
@@ -220,19 +220,19 @@ tipmap_plot <-
       }
     } else {
       tippingPoint.975 <-
-        get_tipping_point(tipmap_data,
+        get_tipping_points(tipmap_data,
                         quantile = 0.975,
                         null_effect = null_effect)
       tippingPoint.95 <-
-        get_tipping_point(tipmap_data,
+        get_tipping_points(tipmap_data,
                         quantile = 0.95,
                         null_effect = null_effect)
       tippingPoint.9 <-
-        get_tipping_point(tipmap_data,
+        get_tipping_points(tipmap_data,
                         quantile = 0.9,
                         null_effect = null_effect)
       tippingPoint.8 <-
-        get_tipping_point(tipmap_data,
+        get_tipping_points(tipmap_data,
                         quantile = 0.8,
                         null_effect = null_effect)
 

@@ -1,7 +1,12 @@
+# tipmap 0.3.7
+
+* Vignette added
+* Modification in Readme file
+
 # tipmap 0.3.5
 
 * Addition of functions facilitating expert elicitation of weights
-* Renaming of functions and variables names to comply with code style guidelines
+* Renaming of functions and variable names to comply with code style guidelines
 * Updates to documentation
 
 # tipmap 0.1.7

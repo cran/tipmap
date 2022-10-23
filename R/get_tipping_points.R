@@ -1,10 +1,10 @@
 #' Identify tipping point for a specific quantile.
 #'
 #' @description
-#' Identifies the weight closest to tipping point for one or multiple specified quantiles.
+#' Identifies the weights closest to tipping points for specified quantiles.
 #'
 #' @param tipmap_data A data frame created by \code{create_tipmap_data()}.
-#' @param quantile The quantile or quantiles of the tipping point. Possible values are 0.025, 0.05, 0.1, 0.2, 0.8, 0.9, 0.95 and 0.975.
+#' @param quantile The quantile(s) of the tipping point. Possible values are 0.025, 0.05, 0.1, 0.2, 0.8, 0.9, 0.95 and 0.975.
 #' @param null_effect The null treatment effect. Defaults to 0.
 #'
 #' @return The weight closest to the tipping point for the specified quantile
@@ -12,10 +12,10 @@
 #' @seealso \code{\link{create_tipmap_data}}
 #' @examples
 #' tip_dat <- load_tipmap_data("tipdat.rds")#'
-#' get_tipping_point(tip_dat, quantile = 0.025)
-#' get_tipping_point(tip_dat, quantile = c(0.025, 0.05, 0.1, 0.2), null_effect = 0.1)
+#' get_tipping_points(tip_dat, quantile = 0.025)
+#' get_tipping_points(tip_dat, quantile = c(0.025, 0.05, 0.1, 0.2), null_effect = 0.1)
 #'
-get_tipping_point <-
+get_tipping_points <-
   function(tipmap_data, quantile, null_effect = 0) {
     if (!(is.numeric(quantile)))
       stop("`quantile` must be numeric and in c(0.025, 0.05, 0.1, 0.2, 0.8, 0.9, 0.95, 0.975)")

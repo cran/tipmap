@@ -14,54 +14,73 @@ install.packages("tipmap")
 
 Suppose that data from three clinical trials in adults is to be combined with data from a small pediatric trial using a robust MAP prior approach.
 
+
 ``` r
 library(tipmap)
-
-pediatricTrial <- createNewTrialData(
-  nTotal = 30,
-  treatmentEffectEstimate = 1.27,
-  standardError = 0.95
+ped_trial <- create_new_trial_data(
+  n_total = 30, 
+  est = 1.27, 
+  se = 0.95
 )
+ped_trial
+```
 
-uisd <- sqrt(pediatricTrial["nTotal"]) * pediatricTrial["SE"]
-
-priorData <- createPriorData(
-  nTotal = c(160, 240, 320),
-  treatmentEffectEstimate = c(1.23, 1.40, 1.51),
-  standardError = c(0.4, 0.36, 0.31)
+``` r
+prior_data <- create_prior_data(
+  n_total = c(160, 240, 320),
+  est = c(1.23, 1.40, 1.51),
+  se = c(0.4, 0.36, 0.31)
 )
+prior_data
+```
 
-gMap <-
+``` r
+uisd <- sqrt(ped_trial["n_total"]) * ped_trial["se"]
+g_map <-
   RBesT::gMAP(
-    formula = cbind(treatmentEffectEstimate, standardError) ~ 1 |
-      studyLabel,
-    data = priorData,
+    formula = cbind(est, se) ~ 1 | study_label,
+    data = prior_data,
     family = gaussian,
-    weights = nTotal,
+    weights = n_total,
     tau.dist = "HalfNormal",
     tau.prior = cbind(0, uisd / 16),
     beta.prior = cbind(0, uisd)
   )
-                        
-mapPrior <-
+```
+
+``` r
+map_prior <-
   RBesT::automixfit(
-    sample = gMap,
+    sample = g_map,
     Nc = seq(1, 4),
     k = 6,
     thresh = -Inf
   )
+map_prior
+```
 
-posterior <- createPosteriorData(mapPrior = mapPrior,
-                                 newTrialData = pediatricTrial,
-                                 sigma = uisd)
+``` r
+posterior <- create_posterior_data(
+  map_prior = map_prior,
+  new_trial_data = ped_trial,
+  sigma = uisd)
+posterior
+```
 
-tippingPointData <-
-  createTippingPointData(newTrialData = pediatricTrial,
-                         posterior = posterior,
-                         mapPrior = mapPrior)
+``` r
+tipmap_data <- create_tipmap_data(
+  new_trial_data = ped_trial,
+  posterior = posterior,
+  map_prior = map_prior)
+```
 
-tippingPointPlot(tippingPointData = tippingPointData)
+``` r
+tipmap_plot(tipmap_data = tipmap_data)
+```
 
-getTippingPoint(tippingPointData = tippingPointData,
-                quantile = c(0.05, 0.025))
+``` r
+get_tipping_points(
+  tipmap_data, 
+  quantile = c(0.025, 0.05, 0.1, 0.2), 
+  null_effect = 0.1)
 ```

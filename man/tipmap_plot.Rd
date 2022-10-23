@@ -10,8 +10,8 @@ tipmap_plot(
   y_range = NULL,
   y_breaks = NULL,
   title = NULL,
-  y_lab = "Endpoint",
-  x_lab = "Weight on informative component",
+  y_lab = "Mean difference",
+  x_lab = "Weight on informative component of MAP prior",
   map_prior_lab = "MAP\\nprior",
   meta_analysis_lab = "MA",
   legend_title = "Posterior quantile",
@@ -29,15 +29,15 @@ tipmap_plot(
 
 \item{title}{The plot title.}
 
-\item{y_lab}{The label for the y axis. Defaults to "Endpoint".}
+\item{y_lab}{The label for the y axis. Defaults to "Mean difference".}
 
-\item{x_lab}{The label for the x axis. Defaults to "Weight on informative component".}
+\item{x_lab}{The label for the x axis. Defaults to "Weight on informative component of MAP prior".}
 
 \item{map_prior_lab}{The label for the MAP prior. Defaults to "MAP prior"}
 
 \item{meta_analysis_lab}{An optional label for a meta-analysis (if included).}
 
-\item{legend_title}{An optional title for the plot legend. Defaults to "Posterior quantile".}
+\item{legend_title}{An optional title for the plot legend. Defaults to "Posterior quantiles".}
 
 \item{null_effect}{The null treatment effect, determining where tipping points are calculated. Defaults to 0.}
 }

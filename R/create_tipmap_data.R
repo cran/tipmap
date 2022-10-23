@@ -11,7 +11,7 @@
 #'
 #' @return A data frame ready to be used for \code{tipmap_plot()} and \code{get_tipping_point()}
 #' @export
-#' @seealso \code{\link{create_new_trial_data}}, \code{\link{create_posterior_data}}, \code{\link{tipmap_plot}}, \code{\link{get_tipping_point}}
+#' @seealso \code{\link{create_new_trial_data}}, \code{\link{create_posterior_data}}, \code{\link{tipmap_plot}}, \code{\link{get_tipping_points}}
 #' @examples
 #'
 #' # specify new trial data
