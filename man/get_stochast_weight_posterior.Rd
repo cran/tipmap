@@ -2,15 +2,15 @@
 % Please edit documentation in R/get_stochast_weight_posterior.R
 \name{get_stochast_weight_posterior}
 \alias{get_stochast_weight_posterior}
-\title{Average over posteriors created using weights randomly drawn from a distribution of weights}
+\title{Computation of posterior distribution using weights sampled from a distribution of weights}
 \usage{
 get_stochast_weight_posterior(
   map_prior,
   new_trial_dat,
   weights,
+  n_posterior_samples,
   null_effect = 0,
-  sigma,
-  mc_error_margin = 0.05
+  sigma
 )
 }
 \arguments{
@@ -20,38 +20,68 @@ get_stochast_weight_posterior(
 
 \item{weights}{A vector containing the weights to be assigned to the informative component.}
 
+\item{n_posterior_samples}{The number of samples to be drawn from each posterior.}
+
 \item{null_effect}{The null treatment effect. Defaults to 0.}
 
 \item{sigma}{Unit information standard deviation used by \code{RBesT::robustify()}.}
-
-\item{mc_error_margin}{Monte Carlo error margin. Defaults to 0.05.}
 }
 \value{
-List object containing averaged estimates of posterior quantiles (obtained with different weights) and data on Monte Carlo error.
+Sample of the posterior distribution.
 }
 \description{
-Runs Monte Carlo simulations with different weights on the informative component of the MAP prior and averages over them.
-Weights may be drawn randomly from the pooled distribution of expert-weightings obtained in an expert elicitation exercise.
+Performs repeated analyses with weights on the informative component of the MAP prior randomly drawn from a distribution of weights and combines samples from all posteriors.
 }
 \examples{
 
+# MAP prior
+(map_prior <- load_tipmap_data("tipmapPrior.rds"))
+summary(map_prior)
+
+# New trial data in target population
 new_trial_dat <- create_new_trial_data(
-   n_total = 30,
-   est = 1.27,
-   se = 0.95
-   )
+  n_total = 30, est = 1.17, se = 0.95
+)
+
+# Expert weights
 expert_weights <- rbind(
-  c(0, 0, 0, 0, 2, 3, 3, 2, 0, 0),
-  c(0, 0, 0, 1, 2, 4, 2, 1, 0, 0),
-  c(0, 0, 0, 1, 2, 3, 2, 2, 0, 0)
-  )
+  c(0, 0, 0, 0, 1, 3, 3, 2, 1, 0),
+  c(0, 0, 1, 1, 2, 2, 3, 1, 0, 0),
+  c(0, 0, 0, 0, 2, 3, 2, 2, 1, 0)
+)
 set.seed(123)
-get_stochast_weight_posterior(
-  map_prior = load_tipmap_data("tipmapPrior.rds"),
-  new_trial_dat = new_trial_dat,
-  weights = draw_beta_mixture_nsamples(expert_weights, n = 100),
+sampled_weights <- draw_beta_mixture_nsamples(expert_weights, n = 500)
+(m_w <- round(mean(sampled_weights), 2)) # 0.59
+
+# Posterior based on mean weight
+robust_mix_prior <- RBesT::robustify(
+  priormix = map_prior,
+  weight = (1 - m_w),
+  n = 1,
+  mean = 0,
   sigma = 12
 )
+posterior1 <- RBesT::postmix(
+  priormix = robust_mix_prior,
+  m = new_trial_dat["mean"],
+  se = new_trial_dat["se"]
+)
+
+# Posterior based on a sample of weights
+posterior2 <- get_stochast_weight_posterior(
+  map_prior = map_prior,
+  new_trial_dat = new_trial_dat,
+  weights = sampled_weights,
+  n_posterior_samples = 500,
+  sigma = 12
+)
+summary_posterior2 <- c(mean(posterior2), sd(posterior2),
+                        quantile(posterior2, probs = c(0.025, 0.5, 0.975)))
+names(summary_posterior2) <- c("mean", "sd", "2.5\%", "50.0\%", "97.5\%")
+
+# Comparison of posterior 1 and 2
+summary(posterior1)
+print(summary_posterior2)
 
 }
 \seealso{

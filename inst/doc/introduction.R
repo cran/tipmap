@@ -1,7 +1,7 @@
 ## ----setup, include = F-------------------------------------------------------
 knitr::opts_chunk$set(
   echo = T, collapse = T, warning = F, message = F, 
-  prompt = T, comment = "##",
+  prompt = T, comment = "#",
   out.width = "100%"
 )
 
@@ -138,15 +138,31 @@ round(1 - RBesT::pmix(posterior_primary, q = 0.5), 3)
 round(1 - RBesT::pmix(posterior_primary, q = 1), 3)
 
 ## ----cumulative_dens, eval=T, echo=T, fig.width=7, fig.height=4.5, dev=c('png','pdf'), out.width="80%", fig.cap='Figure 5: Cumulative density of posterior with weight w=0.38.'----
+library(ggplot2)
 plot(posterior_primary, fun = RBesT::pmix) +
-  ggplot2::scale_x_continuous(breaks = seq(-1, 2, 0.5)) +
-  ggplot2::scale_y_continuous(breaks = 1-c(1, 0.927, 0.879, 0.782, 0.5, 0)) +
-  ggplot2::ylab("Cumulative density of posterior with weight w=0.38") +
-  ggplot2::xlab("Quantile") +
-  ggplot2::geom_vline(xintercept = 0, col = "red") +
-  ggplot2::geom_vline(xintercept = 0.5, col = "red") +
-  ggplot2::geom_vline(xintercept = 1, col = "red") +
-  ggplot2::theme_bw()
+  scale_x_continuous(breaks = seq(-1, 2, 0.5)) +
+  scale_y_continuous(breaks = 1-c(1, 0.927, 0.879, 0.782, 0.5, 0),
+                     limits = c(0,1),
+                     expand = c(0,0)
+                     ) +
+  ylab("Cumulative density of posterior with w=0.38") +
+  xlab("Quantile") +
+  geom_segment(aes(x = 0,
+                   y = RBesT::pmix(mix = posterior_primary, q = 0), 
+                   xend = 0, 
+                   yend = 1), 
+               col="red") +
+  geom_segment(aes(x = 0.5,
+                   y = RBesT::pmix(mix = posterior_primary, q = 0.5), 
+                   xend = 0.5, 
+                   yend = 1), 
+               col="red") + 
+  geom_segment(aes(x = 1,
+                   y = RBesT::pmix(mix = posterior_primary, q = 1), 
+                   xend = 1, 
+                   yend = 1), 
+               col="red") + 
+  theme_bw()
 
 ## ---- eval=T, echo=T----------------------------------------------------------
 tipp_points[3]

@@ -12,8 +12,6 @@ install.packages("tipmap")
 
 ## Example
 
-Suppose that data from three clinical trials in adults is to be combined with data from a small pediatric trial using a robust MAP prior approach.
-
 
 ``` r
 library(tipmap)

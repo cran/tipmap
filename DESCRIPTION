@@ -1,7 +1,7 @@
 Package: tipmap
 Type: Package
 Title: Tipping Point Analysis for Bayesian Dynamic Borrowing
-Version: 0.3.7
+Version: 0.3.9
 Authors@R: c(
     person("Morten", "Dreher", role = "aut"),
     person("Christian", "Stock", email = "christian.stock@boehringer-ingelheim.com", role = c("aut","cre"), comment = c(ORCID = "0000-0002-3493-3234")),
@@ -17,10 +17,10 @@ RoxygenNote: 7.2.1
 VignetteBuilder: knitr
 Depends: R (>= 3.5.0)
 NeedsCompilation: no
-Packaged: 2022-10-23 16:00:55 UTC; stockch
+Packaged: 2022-12-07 21:22:04 UTC; stockch
 Author: Morten Dreher [aut],
   Christian Stock [aut, cre] (<https://orcid.org/0000-0002-3493-3234>),
   Emma Torrini [ctb]
 Maintainer: Christian Stock <christian.stock@boehringer-ingelheim.com>
 Repository: CRAN
-Date/Publication: 2022-10-23 18:20:02 UTC
+Date/Publication: 2022-12-07 21:50:02 UTC
