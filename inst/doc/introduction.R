@@ -4,6 +4,8 @@ knitr::opts_chunk$set(
   prompt = T, comment = "#",
   out.width = "100%"
 )
+library(ggplot2)
+ggplot2::theme_set(theme_bw())
 
 ## ---- eval=T, echo=T----------------------------------------------------------
 library(tipmap)
@@ -43,7 +45,7 @@ map_mcmc <- RBesT::gMAP(
 ## ---- eval=T, echo=T----------------------------------------------------------
 summary(map_mcmc)
 
-## ----forest_plot, eval=T, echo=T, fig.width=6, fig.height=3, dev=c('png','pdf'), out.width="70%", fig.cap='Figure 1: Forest plot.'----
+## ----forest_plot, eval=T, echo=T, fig.width=6, fig.height=3, dev=c('png'), out.width="70%", fig.cap='Figure 1: Forest plot.'----
 plot(map_mcmc)$forest_model
 
 ## ---- eval=T, echo=T----------------------------------------------------------
@@ -57,7 +59,7 @@ map_prior <- RBesT::automixfit(
 ## ---- eval=T, echo=T----------------------------------------------------------
 print(map_prior)
 
-## ----map_prior_dens, eval=T, echo=T, fig.width=6, fig.height=3, dev=c('png','pdf'), out.width="70%", fig.cap='Figure 2: Overlay of the MCMC histogram of the MAP prior and the fitted parametric mixture approximation.'----
+## ----map_prior_dens, eval=T, echo=T, fig.width=6, fig.height=3, dev=c('png'), out.width="70%", fig.cap='Figure 2: Overlay of the MCMC histogram of the MAP prior and the fitted parametric mixture approximation.'----
 plot(map_prior)$mix
 
 ## ---- eval=T, echo=T----------------------------------------------------------
@@ -93,10 +95,10 @@ tipmap_data <- create_tipmap_data(
   posterior = posterior,
   map_prior = map_prior)
 
-## ----tipmap_plot, eval=T, echo=T, fig.width=8, fig.height=5, dev=c('png','pdf'), out.width="95%", fig.cap='Figure 3: Tipping point plot.'----
+## ----tipmap_plot, eval=T, echo=T, fig.width=8, fig.height=5, dev=c('png'), out.width="95%", fig.cap='Figure 3: Tipping point plot.'----
 (p1 <- tipmap_plot(tipmap_data = tipmap_data))
 
-## ----tipmap_plot_refline, eval=T, echo=T, fig.width=8, fig.height=5, dev=c('png','pdf'), out.width="95%", fig.cap='Figure 4: Tipping point plot with reference line.'----
+## ----tipmap_plot_refline, eval=T, echo=T, fig.width=8, fig.height=5, dev=c('png'), out.width="95%", fig.cap='Figure 4: Tipping point plot with reference line.'----
 primary_weight <- 0.38
 (p2 <- p1 + ggplot2::geom_vline(xintercept = primary_weight, col="green4"))
 
@@ -137,7 +139,7 @@ round(1 - RBesT::pmix(posterior_primary, q = 0), 3)
 round(1 - RBesT::pmix(posterior_primary, q = 0.5), 3)
 round(1 - RBesT::pmix(posterior_primary, q = 1), 3)
 
-## ----cumulative_dens, eval=T, echo=T, fig.width=7, fig.height=4.5, dev=c('png','pdf'), out.width="80%", fig.cap='Figure 5: Cumulative density of posterior with weight w=0.38.'----
+## ----cumulative_dens, eval=T, echo=T, fig.width=7, fig.height=4.5, dev=c('png'), out.width="80%", fig.cap='Figure 5: Cumulative density of posterior with weight w=0.38.'----
 library(ggplot2)
 plot(posterior_primary, fun = RBesT::pmix) +
   scale_x_continuous(breaks = seq(-1, 2, 0.5)) +

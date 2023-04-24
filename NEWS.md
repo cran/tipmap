@@ -1,3 +1,9 @@
+## tipmap 0.4.1
+
+* New vignette on weight determination via expert elicitation 
+* Updated README file
+* Modifications in documentation
+
 ## tipmap 0.3.9
 
 * Modifications in computation of posterior with stochastic weights
