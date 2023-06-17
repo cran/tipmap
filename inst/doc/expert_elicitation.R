@@ -1,11 +1,12 @@
 ## ----setup, include = F-------------------------------------------------------
 knitr::opts_chunk$set(
   echo = T, collapse = T, warning = F, message = F, 
-  prompt = F, comment = "#", out.width = "100%"
+  prompt = T, comment = "#", out.width = "100%"
 )
 
 ## ---- eval=T, echo=T----------------------------------------------------------
 library(tipmap)
+set.seed(123)
 
 ## ----chips_single1, eval=T, echo=T--------------------------------------------
 chips_1exp <- c(1, 3, 4, 2, 0, 0, 0, 0, 0, 0)

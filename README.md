@@ -34,7 +34,7 @@ You can install the current development version from GitHub with:
 
 ``` r
 if (!require("remotes")) {install.packages("remotes")}
-remotes::install_github("chstock/tipmap")
+remotes::install_github("Boehringer-Ingelheim/tipmap")
 ```
 
 ## Getting started
@@ -132,5 +132,5 @@ get_tipping_points(
 
 To cite `tipmap` in publications please use: Morten Dreher and Christian
 Stock (2022). tipmap: Tipping Point Analysis for Bayesian Dynamic
-Borrowing. R package version 0.3.9. URL:
+Borrowing. R package version 0.4.2. URL:
 <https://CRAN.R-project.org/package=tipmap>
