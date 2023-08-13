@@ -1,3 +1,8 @@
+## tipmap 0.5.1
+
+* Functionality added to compute operating characteristics (new functions are: `oc_pos()`, `oc_bias()` and `oc_coverage()`)
+* Use of the `assertthat::assert_that()` to check function inputs
+
 ## tipmap 0.4.2
 
 * GitHub repository changed 
@@ -18,7 +23,7 @@
 
 ## tipmap 0.3.7
 
-* Vignette added
+* Introductory vignette added
 * Modification in Readme file
 
 ## tipmap 0.3.5

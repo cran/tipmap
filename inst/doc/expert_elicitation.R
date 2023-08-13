@@ -21,16 +21,16 @@ sum(chips_1exp)
 (fit_1exp <- fit_beta_1exp(df = y)$par)
 
 ## ----chips_multiple, eval=T, echo=T-------------------------------------------
+chips_mult <- rbind(
+  c(1, 3, 4, 2, 0, 0, 0, 0, 0, 0),
+  c(0, 2, 3, 2, 2, 1, 0, 0, 0, 0),
+  c(0, 1, 3, 2, 2, 1, 1, 0, 0, 0),
+  c(1, 3, 3, 2, 1, 0, 0, 0, 0, 0),
+  c(0, 1, 4, 3, 2, 0, 0, 0, 0, 0)
+)
 beta_fits <- fit_beta_mult_exp(
-chips_mult <-
-  rbind(
-      c(1, 3, 4, 2, 0, 0, 0, 0, 0, 0),
-      c(0, 2, 3, 2, 2, 1, 0, 0, 0, 0),
-      c(0, 1, 3, 2, 2, 1, 1, 0, 0, 0),
-      c(1, 3, 3, 2, 1, 0, 0, 0, 0, 0),
-      c(0, 1, 4, 3, 2, 0, 0, 0, 0, 0)
-      )
-  )
+  chips_mult = chips_mult
+)
 beta_fits
 
 ## ----fit_beta_1a, eval=T, echo=T----------------------------------------------
@@ -62,7 +62,10 @@ mean(x)
 sd(x)
 
 ## ----fit_beta_2a, eval=T, echo=T----------------------------------------------
-expert_samples <- draw_beta_mixture_nsamples(n=10^3, chips_mult=chips_mult) 
+expert_samples <- draw_beta_mixture_nsamples(
+  n = 10^3, 
+  chips_mult = chips_mult
+) 
 summary(expert_samples)
 
 ## ----fit_beta_2b, eval=T, echo=T----------------------------------------------
