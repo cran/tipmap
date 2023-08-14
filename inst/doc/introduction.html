@@ -11,7 +11,7 @@
 
 <meta name="author" content="Christian Stock" />
 
-<meta name="date" content="2023-08-13" />
+<meta name="date" content="2023-08-14" />
 
 <title>Introduction to the ‘tipmap’ package</title>
 
@@ -1505,7 +1505,7 @@ border-radius: 0px;
 <h3 class="subtitle">Tipping point analysis for clinical trials that
 employ Bayesian dynamic borrowing</h3>
 <h4 class="author">Christian Stock</h4>
-<h4 class="date">2023-08-13</h4>
+<h4 class="date">2023-08-14</h4>
 
 </div>
 
@@ -1669,9 +1669,9 @@ the target population.</p>
 # Reference scale: 5.298722
 # Mixture Components:
 #   comp1     comp2    
-# w 0.7712777 0.2287223
-# m 1.4522408 1.3626943
-# s 0.2507787 0.5790249</code></pre>
+# w 0.7712779 0.2287221
+# m 1.4522408 1.3626942
+# s 0.2507787 0.5790250</code></pre>
 <p>The density of the parametric mixture together with a histogram of
 MCMC samples from the <code>map_mcmc</code> object is shown in Figure
 2.</p>
@@ -1719,7 +1719,7 @@ using the function <code>create_posterior_data()</code>.</p>
 <pre class="r"><code>&gt; head(posterior, 4)
 #         weight     q0.01    q0.025     q0.05       q0.1       q0.2      q0.25
 # w=0      0.000 -2.197193 -1.700552 -1.273414 -0.7809595 -0.1846242 0.04189379
-# w=0.005  0.005 -2.187599 -1.689612 -1.261009 -0.7663718 -0.1663689 0.06195600
+# w=0.005  0.005 -2.187599 -1.689612 -1.261009 -0.7663718 -0.1663689 0.06195599
 # w=0.01   0.010 -2.178066 -1.678733 -1.248665 -0.7518369 -0.1481460 0.08192652
 # w=0.015  0.015 -2.168591 -1.667913 -1.236379 -0.7373439 -0.1299529 0.10185102
 #              q0.5    q0.75     q0.8     q0.9    q0.95   q0.975    q0.99
@@ -1729,14 +1729,14 @@ using the function <code>create_posterior_data()</code>.</p>
 # w=0.015 1.0334497 1.829396 2.048625 2.650338 3.148831 3.580320 4.080995</code></pre>
 <pre class="r"><code>&gt; tail(posterior, 4)
 #         weight     q0.01    q0.025     q0.05     q0.1     q0.2    q0.25
-# w=0.985  0.985 0.3714355 0.6387337 0.8436306 1.017020 1.174194 1.226895
-# w=0.99   0.990 0.3833763 0.6449841 0.8466931 1.018318 1.174760 1.227326
-# w=0.995  0.995 0.3949779 0.6511062 0.8497400 1.019597 1.175321 1.227752
+# w=0.985  0.985 0.3714354 0.6387337 0.8436307 1.017020 1.174194 1.226895
+# w=0.99   0.990 0.3833762 0.6449842 0.8466931 1.018318 1.174760 1.227326
+# w=0.995  0.995 0.3949778 0.6511062 0.8497401 1.019597 1.175321 1.227752
 # w=1      1.000 0.4062555 0.6571025 0.8526964 1.020858 1.175875 1.228175
 #             q0.5    q0.75     q0.8     q0.9    q0.95   q0.975    q0.99
-# w=0.985 1.423881 1.613779 1.661719 1.793827 1.916712 2.046204 2.246898
+# w=0.985 1.423881 1.613779 1.661719 1.793827 1.916712 2.046203 2.246898
 # w=0.99  1.424010 1.613702 1.661578 1.793419 1.915799 2.044219 2.241823
-# w=0.995 1.424138 1.613625 1.661438 1.793016 1.914898 2.042269 2.236859
+# w=0.995 1.424138 1.613625 1.661438 1.793016 1.914898 2.042269 2.236858
 # w=1     1.424264 1.613549 1.661300 1.792616 1.914009 2.040353 2.232001</code></pre>
 <p>The resulting data frame has 201 rows and 14 columns. The weights
 increase incrementally in steps of 0.005 from 0 to 1, i.e. posterior
